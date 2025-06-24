@@ -7,7 +7,7 @@ on:
   push:
   workflow_dispatch:
   pull_request_target:
-    author_association:
+    author_associations:
       - COLLABORATOR
 
 
