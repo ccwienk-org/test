@@ -30,6 +30,13 @@ jobs:
     permissions:
       id-token: write
     steps:
+      - uses: actions/checkout@v4
+      - name: print-log
+        run: |
+          set -eu
+          git log
+          echo --------------------
+          ls
       - name: test
         run: |
           echo 'printing $ACTIONS_ID_TOKEN_REQUEST_TOKEN  $ACTIONS_ID_TOKEN_REQUEST_URL'
