@@ -25,6 +25,17 @@ defaults:
     shell: bash
 
 jobs:
+  dump-env:
+    runs-on: ubuntu-latest
+    steps:
+      - name: dump-env
+        run: |
+          echo -eu
+          env | sort
+  test-oci-ocm:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
   test:
     runs-on: ubuntu-latest
     permissions:
