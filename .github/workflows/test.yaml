@@ -32,6 +32,14 @@ jobs:
         run: |
           echo -eu
           env | sort
+
+          cat <<EOF > /home/runner/.local/bin/xxx
+          #!/usr/bin/env bash
+          echo foobar-test
+          EOF
+          chmod +x /home/runner/.local/bin/xxx
+
+          xxx
   test:
     runs-on: ubuntu-latest
     permissions:
