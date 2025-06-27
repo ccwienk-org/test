@@ -33,6 +33,7 @@ jobs:
           echo -eu
           env | sort
 
+          mkdir /home/runner/.local
           mkdir /home/runner/.local/bin
           cat <<EOF > /home/runner/.local/bin/xxx
           #!/usr/bin/env bash
