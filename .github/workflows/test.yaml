@@ -32,10 +32,6 @@ jobs:
         run: |
           echo -eu
           env | sort
-  test-oci-ocm:
-    runs-on: ubuntu-latest
-    permissions:
-      id-token: write
   test:
     runs-on: ubuntu-latest
     permissions:
