@@ -3,7 +3,11 @@ on:
   workflow_dispatch:
 
 jobs:
+  prepare:
+    uses: gardener/cc-utils/.github/workflows/prepare.yaml@master
   build:
+    needs:
+     - prepare
     runs-on: ubuntu-latest
     steps:
       - name: create-file
@@ -32,6 +36,7 @@ jobs:
     uses: gardener/cc-utils/.github/workflows/release.yaml@release-assets
     needs:
       - build
+      - prepare
     secrets: inherit
     permissions:
       id-token: write
