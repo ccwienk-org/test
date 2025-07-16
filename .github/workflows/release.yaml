@@ -1,0 +1,49 @@
+name: Release
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: create-file
+        shell: bash
+        run: |
+          set -eu
+          mkdir blobs.d
+
+          echo "my important asset" > blobs.d/my-asset.txt
+
+      - name: export-ocm-fragments
+        uses: gardener/cc-utils/.github/actions/export-ocm-fragments@master
+        with:
+          blobs-directory: blobs.d
+          ocm-resources: |
+            name: asset-name
+            relation: local
+            extraIdentity:
+              attr1: foo
+              attr2: bar
+            access:
+              type: localBlob
+              localReference: my-asset.txt
+
+  release-to-github-and-bump:
+    uses: gardener/cc-utils/.github/workflows/release.yaml@release-assets
+    needs:
+      - build
+    secrets: inherit
+    permissions:
+      id-token: write
+      contents: write
+
+    with:
+      release-commit-target: branch
+      next-version: bump-minor
+      slack-channel-id:
+      assets: |
+        - name: my-asset-name-in-github
+          type: ocm-resource
+          id:
+            name: asset-name
+            attr1: foo
