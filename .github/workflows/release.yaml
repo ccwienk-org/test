@@ -5,6 +5,8 @@ on:
 jobs:
   prepare:
     uses: gardener/cc-utils/.github/workflows/prepare.yaml@master
+    with:
+      mode: release
   build:
     needs:
      - prepare
