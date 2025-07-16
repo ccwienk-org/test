@@ -36,6 +36,7 @@ jobs:
     permissions:
       id-token: write
       contents: write
+      packages: write
 
     with:
       release-commit-target: branch
