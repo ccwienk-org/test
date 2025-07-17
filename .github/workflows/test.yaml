@@ -28,11 +28,11 @@ jobs:
     steps:
       - name: test-condition
         run: |
-          echo "should be false: ${{ inputs.foo == '' }}"
+          echo "should be true: ${{ inputs.foo == '' }}"
           if ${{ inputs.foo == '' }}; then
-            echo "should not happen"
-          else
             echo "foo was not set"
+          else
+            echo "should not happen"
           fi
       - name: dump-env
         run: |
