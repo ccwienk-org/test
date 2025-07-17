@@ -26,6 +26,14 @@ jobs:
   dump-env:
     runs-on: ubuntu-latest
     steps:
+      - name: test-condition
+        run: |
+          echo "should be false: ${{ inputs.foo == '' }}"
+          if ${{ inputs.foo == '' }}; then
+            echo "should not happen"
+          else
+            echo "foo was not set"
+          fi
       - name: dump-env
         run: |
           echo -eu
