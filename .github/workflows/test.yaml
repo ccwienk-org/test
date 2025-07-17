@@ -7,8 +7,6 @@ on:
   push:
   workflow_dispatch:
   pull_request_target:
-    author_associations:
-      - COLLABORATOR
 
 
 #COLLABORATOR: The user has been invited to collaborate on the repository.
@@ -42,7 +40,7 @@ jobs:
           chmod +x /home/runner/.local/bin/xxx
 
           xxx
-  test:
+  dump-github-ctx:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
