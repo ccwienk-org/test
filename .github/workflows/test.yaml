@@ -45,11 +45,11 @@ jobs:
     permissions:
       id-token: write
     steps:
-      - uses: ccwienk-org/cc-utils/.github/actions/safe-checkout@master
+      - uses: ccwienk-org/cc-utils/.github/actions/trusted-checkout@master
       - name: print-log
         run: |
           set -eu
-          git log
+          git log -2
           echo --------------------
           ls
       - name: test
