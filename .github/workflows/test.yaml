@@ -55,7 +55,7 @@ jobs:
     permissions:
       id-token: write
     steps:
-      - uses: ccwienk-org/cc-utils/.github/actions/trusted-checkout@master
+      - uses: gardener/cc-utils/.github/actions/trusted-checkout@honour-trusted-label
       - name: print-log
         run: |
           set -eu
