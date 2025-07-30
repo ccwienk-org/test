@@ -55,6 +55,7 @@ jobs:
     permissions:
       id-token: write
       contents: write
+      pull-requests: write # needed to add/remove labels
     steps:
       - uses: gardener/cc-utils/.github/actions/trusted-checkout@honour-trusted-label
       - name: print-log
