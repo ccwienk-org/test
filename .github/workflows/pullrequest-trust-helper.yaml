@@ -13,7 +13,14 @@ jobs:
       pull-requests: write
     # secrets: inherit
     steps:
+      - uses: actions/create-github-app-token@v2
+        id: token
+        with:
+          app-id: ${{ vars.GARDENER_GITHUB_ACTIONS_APP_ID }}
+          private-key: ${{ secrets.github-app-secret-key || secrets.GARDENER_GITHUB_ACTIONS_PRIVATE_KEY }}
       - uses: gardener/cc-utils/.github/actions/pullrequest-trust-helper@trusted-helper
+        with:
+          github-token: ${{ steps.token.outputs.token }}
     # uses: gardener/cc-utils/.github/workflows/pullrequest-trust-helper.yaml@trusted-helper
     # with:
     #  trusted-teams:
