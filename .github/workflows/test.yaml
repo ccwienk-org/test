@@ -63,7 +63,7 @@ jobs:
       - name: print-log
         run: |
           set -eu
-          git -Csubdir log -2
+          git -C subdir log -2
           echo --------------------
           ls
       - name: test
