@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
-    secrets: inherit
+    # secrets: inherit
     steps:
       - uses: gardener/cc-utils/.github/actions/pullrequest-trust-helper@trusted-helper
     # uses: gardener/cc-utils/.github/workflows/pullrequest-trust-helper.yaml@trusted-helper
