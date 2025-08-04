@@ -8,8 +8,11 @@ on:
 
 jobs:
   pullrequest-trusted-helper:
+    runs-on: ubuntu-latest
     permissions:
       pull-requests: write
-    uses: gardener/cc-utils/.github/workflows/pullrequest-trust-helper.yaml@trusted-helper
-    with:
-      trusted-teams:
+    steps:
+      - uses: gardener/cc-utils/.github/actions/pullrequest-trust-helper@trusted-helper
+    # uses: gardener/cc-utils/.github/workflows/pullrequest-trust-helper.yaml@trusted-helper
+    # with:
+    #  trusted-teams:
