@@ -7,8 +7,8 @@ on:
   push:
   workflow_dispatch:
   pull_request_target:
-    author_associations:
-      - COLLABORATOR
+    types:
+      - labeled
 
 
 #COLLABORATOR: The user has been invited to collaborate on the repository.
@@ -25,16 +25,43 @@ defaults:
     shell: bash
 
 jobs:
-  test:
+  dump-env:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test-condition
+        run: |
+          echo "should be true: ${{ inputs.foo == '' }}"
+          if ${{ inputs.foo == '' }}; then
+            echo "foo was not set"
+          else
+            echo "should not happen"
+          fi
+      - name: dump-env
+        run: |
+          echo -eu
+          env | sort
+
+          mkdir /home/runner/.local
+          mkdir /home/runner/.local/bin
+          cat <<EOF > /home/runner/.local/bin/xxx
+          #!/usr/bin/env bash
+          echo foobar-test
+          EOF
+          chmod +x /home/runner/.local/bin/xxx
+
+          xxx
+  dump-github-ctx:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
+      contents: write
+      pull-requests: write # needed to add/remove labels
     steps:
-      - uses: ccwienk-org/cc-utils/.github/actions/safe-checkout@master
+      - uses: gardener/cc-utils/.github/actions/trusted-checkout@honour-trusted-label
       - name: print-log
         run: |
           set -eu
-          git log
+          git log -2
           echo --------------------
           ls
       - name: test
