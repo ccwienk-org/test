@@ -57,11 +57,13 @@ jobs:
       contents: write
       pull-requests: write # needed to add/remove labels
     steps:
-      - uses: gardener/cc-utils/.github/actions/trusted-checkout@master
+      - uses: gardener/cc-utils/.github/actions/trusted-checkout@fix-trusted-checkout
+        with:
+          path: subdir
       - name: print-log
         run: |
           set -eu
-          git log -2
+          git -Csubdir log -2
           echo --------------------
           ls
       - name: test
