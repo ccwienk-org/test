@@ -21,6 +21,7 @@ jobs:
       - uses: gardener/cc-utils/.github/actions/pullrequest-trust-helper@trusted-helper
         with:
           github-token: ${{ steps.token.outputs.token }}
+          trusted-teams: default
     # uses: gardener/cc-utils/.github/workflows/pullrequest-trust-helper.yaml@trusted-helper
     # with:
     #  trusted-teams:
