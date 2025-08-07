@@ -19,7 +19,9 @@ jobs:
       matrix:
         args:
           - foo: bar
+            second-arg: uwu
           - foo: baz
+            second-arg: owo
     runs-on: ubuntu-latest
     steps:
       - name: test-condition
