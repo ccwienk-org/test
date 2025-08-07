@@ -1,0 +1,28 @@
+# XXX this workflow is intended for development/testing purposes
+# if pushed to a public repository (presumably github.com/gardener/cc-utils), this indicates
+# this happened by accident
+
+name: Matrix-Test
+on:
+  push:
+  workflow_dispatch:
+  pull_request_target:
+  push:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  dump-env:
+    strategy:
+      matrix:
+        args:
+          - foo: bar
+          - foo: baz
+    runs-on: ubuntu-latest
+    steps:
+      - name: test-condition
+        run: |
+          echo "hello, cruel gha-world"
+          echo "this is my arg: ${{ matrix.args.foo }}"
