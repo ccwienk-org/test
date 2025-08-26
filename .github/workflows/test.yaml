@@ -25,6 +25,17 @@ defaults:
     shell: bash
 
 jobs:
+  conditional-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: touch
+        shell: bash
+        run: |
+          touch /tmp/foo
+      - uses: actions/upload-artifact@${{ github.server_url == 'https://github.com' && 'v4' || 'v3' }}
+        with:
+          name: myname
+          path: /tmp/foo
   dump-env:
     runs-on: ubuntu-latest
     steps:
