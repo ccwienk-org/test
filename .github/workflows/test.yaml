@@ -29,10 +29,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: touch
+        id: x
         shell: bash
         run: |
           touch /tmp/foo
-      - uses: actions/upload-artifact@${{ github.server_url == 'https://github.com' && 'v4' || 'v3' }}
+          echo "tag=v4" >> ${GITHUB_OUTPUT}
+      - uses: actions/upload-artifact@${{ steps.x.outputs.tag }}
         with:
           name: myname
           path: /tmp/foo
