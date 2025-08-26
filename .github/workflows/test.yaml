@@ -50,6 +50,7 @@ jobs:
                   name: ${{ inputs.name }}
                   path: ${{ inputs.path }}
           EOF
+          cat ../a/action.yaml
       - uses: ./../a
         with:
           name: myname
