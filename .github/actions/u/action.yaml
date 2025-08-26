@@ -17,7 +17,7 @@ runs:
 
         "${GITHUB_ACTION_PATH}/template.sh" \
           ../upload-artifact/action.yaml \
-          v5
+          v4
     - name: upload-artifact
       uses: ./../upload-artifact
       with:
