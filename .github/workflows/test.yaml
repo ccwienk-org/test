@@ -34,7 +34,23 @@ jobs:
         run: |
           touch /tmp/foo
           echo "tag=v4" >> ${GITHUB_OUTPUT}
-      - uses: actions/upload-artifact@${{ steps.x.outputs.tag }}
+          mkdir /tmp/a
+          cat <<"EOF" >/tmp/a/action.yaml
+          name: upload-artifact
+          inputs:
+            name:
+              type: string
+            path:
+              type: string
+          runs:
+            using: composite
+            steps:
+              - uses: actions/upload-artifact@v4
+                with:
+                  name: ${{ inputs.name }}
+                  path: ${{ inputs.path }}
+          EOF
+      - uses: /tmp/a
         with:
           name: myname
           path: /tmp/foo
