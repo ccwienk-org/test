@@ -34,8 +34,8 @@ jobs:
         run: |
           touch /tmp/foo
           echo "tag=v4" >> ${GITHUB_OUTPUT}
-          mkdir /tmp/a
-          cat <<"EOF" >/tmp/a/action.yaml
+          mkdir ../a
+          cat <<"EOF" >../a/action.yaml
           name: upload-artifact
           inputs:
             name:
@@ -50,7 +50,7 @@ jobs:
                   name: ${{ inputs.name }}
                   path: ${{ inputs.path }}
           EOF
-      - uses: /tmp/a
+      - uses: ../a
         with:
           name: myname
           path: /tmp/foo
