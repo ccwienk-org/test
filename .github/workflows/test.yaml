@@ -33,7 +33,7 @@ jobs:
         shell: bash
         run: |
           touch /tmp/foo
-      - uses: ./.github/actions/u
+      - uses: ccwienk-org/test/.github/actions/u@main
         with:
           name: myname
           path: /tmp/foo
