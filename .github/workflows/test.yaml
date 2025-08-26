@@ -25,7 +25,7 @@ defaults:
     shell: bash
 
 jobs:
-  conditional-tag:
+  upload-dynamic-test:
     runs-on: ubuntu-latest
     steps:
       - name: touch
@@ -33,25 +33,7 @@ jobs:
         shell: bash
         run: |
           touch /tmp/foo
-          echo "tag=v4" >> ${GITHUB_OUTPUT}
-          mkdir ../a
-          cat <<"EOF" >../a/action.yaml
-          name: upload-artifact
-          inputs:
-            name:
-              type: string
-            path:
-              type: string
-          runs:
-            using: composite
-            steps:
-              - uses: actions/upload-artifact@v4
-                with:
-                  name: ${{ inputs.name }}
-                  path: ${{ inputs.path }}
-          EOF
-          cat ../a/action.yaml
-      - uses: ./../a
+      - uses: ./.github/actions/u
         with:
           name: myname
           path: /tmp/foo
