@@ -1,0 +1,25 @@
+name: upload-artifact
+
+inputs:
+  name:
+    type: string
+  path:
+    type: string
+
+runs:
+  using: composite
+  steps:
+    - name: render
+      shell: bash
+      run: |
+        set -euo pipefail
+        mkdir ../upload-artifact
+
+        "${GITHUB_ACTION_PATH}/template.sh" \
+          ../upload-artifact/action.yaml \
+          v5
+    - name: upload-artifact
+      uses: ./../upload-artifact
+      with:
+        name: ${{ inputs.name }}
+        path: ${{ inputs.path }}
