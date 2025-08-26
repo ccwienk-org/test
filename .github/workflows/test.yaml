@@ -50,7 +50,7 @@ jobs:
                   name: ${{ inputs.name }}
                   path: ${{ inputs.path }}
           EOF
-      - uses: ../a
+      - uses: ./../a
         with:
           name: myname
           path: /tmp/foo
