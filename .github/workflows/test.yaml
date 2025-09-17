@@ -40,6 +40,12 @@ jobs:
   dump-env:
     runs-on: ubuntu-latest
     steps:
+      - using: actions/checkout@v5
+      - name: dump-git-cfg
+        shell: bash
+        run: |
+          set -euo
+          git config -l
       - name: test-condition
         run: |
           echo "should be true: ${{ inputs.foo == '' }}"
