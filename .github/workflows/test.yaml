@@ -37,6 +37,14 @@ jobs:
         with:
           name: myname
           path: /tmp/foo
+  test-python-packages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test-python
+        shell: bash
+        run: |
+          pip list
+          pip3 list
   dump-env:
     runs-on: ubuntu-latest
     steps:
