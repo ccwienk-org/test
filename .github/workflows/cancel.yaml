@@ -15,3 +15,5 @@ jobs:
         shell: bash
         run: |
           gh run cancel ${{ github.run_id }}
+        env:
+          GH_TOKEN: ${{ github.token }}
