@@ -34,7 +34,7 @@ jobs:
           set -euo pipefail
 
           git ls-remote \
-            https://x-access-token:${{ github.token }}github.com/ccwienk-org/test
+            https://x-access-token:${{ github.token }}@github.com/ccwienk-org/test
   upload-dynamic-test:
     runs-on: ubuntu-latest
     steps:
