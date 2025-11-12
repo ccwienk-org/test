@@ -11,6 +11,7 @@ jobs:
   cancel-self:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v5
       - name: cancel self
         shell: bash
         run: |
