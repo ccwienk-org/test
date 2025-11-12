@@ -1,0 +1,17 @@
+name: Self-Cancelling Workflow
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  actions: write
+
+jobs:
+  cancel-self:
+  runs-on: ubuntu-latest
+  steps:
+    - name: cancel self
+      shell: bash
+      run: |
+        gh run cancel ${{ github.run_id }}
