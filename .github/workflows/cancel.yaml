@@ -21,6 +21,7 @@ jobs:
           echo self-cancelling now
           on_sigint() {
             echo uh-oh, we got a sigint
+            exit 1
           }
           trap on_sigint SIGINT
           gh run cancel ${{ github.run_id }}
