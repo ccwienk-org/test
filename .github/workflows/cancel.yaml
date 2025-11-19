@@ -12,7 +12,6 @@ jobs:
   cancel-self:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
       - name: wait and cancel
         shell: bash
         run: |
@@ -22,6 +21,7 @@ jobs:
 
           trap onint SIGINT
 
+          docker pull alpine
           echo running docker
           docker run alpine sleep 20
           # check whether signal is correctly picked up by toplevel trap if waiting for subprocess
