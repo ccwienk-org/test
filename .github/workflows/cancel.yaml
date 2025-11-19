@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: wait and cancel
-        shell: shell
+        shell: bash
         run: |
           onint() {
             touch /tmp/markerfile
