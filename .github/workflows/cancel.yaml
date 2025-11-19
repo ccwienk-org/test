@@ -1,4 +1,4 @@
-name: Self-Cancelling Workflow
+name: Workflow for testing on-cancel
 
 on:
   push:
@@ -13,9 +13,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - name: cancel self
+      - name: wait and cancel
         shell: bash
         run: |
+          echo will wait for 20s, then cancel
+          sleep 20
+          echo self-cancelling now
           gh run cancel ${{ github.run_id }}
         env:
           GH_TOKEN: ${{ github.token }}
+      - name: run-if-cancelled
+        if: cancelled()
+        shell: bash
+        run: |
+          echo we were cancelled, alas!
