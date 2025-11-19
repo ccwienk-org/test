@@ -17,14 +17,13 @@ jobs:
         shell: bash
         run: |
           echo will wait for 20s, then cancel
-          echo self-cancelling now
           on_sigint() {
             echo uh-oh, we got a sigint
             exit 1
           }
           trap on_sigint SIGINT
-          sleep 20
-          gh run cancel ${{ github.run_id }}
+          sleep 60
+          # gh run cancel ${{ github.run_id }}
         env:
           GH_TOKEN: ${{ github.token }}
       - name: run-if-cancelled
