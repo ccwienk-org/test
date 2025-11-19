@@ -22,7 +22,8 @@ jobs:
 
           trap onint SIGINT
 
-          docker run alpine sleep 10
+          echo running docker
+          docker run alpine sleep 20
           # check whether signal is correctly picked up by toplevel trap if waiting for subprocess
         env:
           GH_TOKEN: ${{ github.token }}
