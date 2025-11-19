@@ -14,16 +14,18 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: wait and cancel
-        shell: bash
+        shell: python
         run: |
-          echo will wait for 20s, then cancel
-          on_sigint() {
-            echo uh-oh, we got a sigint
-            exit 1
-          }
-          trap on_sigint SIGINT INT
-          sleep 60
-          # gh run cancel ${{ github.run_id }}
+          import signal
+          import time
+
+          def handle(signum, frame):
+            print(f'received: {signum=}')
+
+          signal.signal(signal.SIGINT, handle)
+          signal.signal(signal.SIGTERM, handle)
+
+          time.sleep(60)
         env:
           GH_TOKEN: ${{ github.token }}
       - name: run-if-cancelled
