@@ -21,7 +21,7 @@ jobs:
             echo uh-oh, we got a sigint
             exit 1
           }
-          trap on_sigint SIGINT
+          trap on_sigint SIGINT INT
           sleep 60
           # gh run cancel ${{ github.run_id }}
         env:
