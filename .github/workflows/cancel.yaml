@@ -14,20 +14,16 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: wait and cancel
-        shell: python
+        shell: shell
         run: |
-          import signal
-          import time
+          onint() {
+            touch /tmp/markerfile
+          }
 
-          def handle(signum, frame):
-            print(f'received: {signum=}')
-            with open('/tmp/markerfile', 'w') as f:
-              f.write('bla')
+          trap onint SIGINT
 
-          signal.signal(signal.SIGINT, handle)
-          signal.signal(signal.SIGTERM, handle)
-
-          time.sleep(60)
+          docker run alpine sleep 10
+          # check whether signal is correctly picked up by toplevel trap if waiting for subprocess
         env:
           GH_TOKEN: ${{ github.token }}
       - name: run-if-cancelled
