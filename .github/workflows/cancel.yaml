@@ -21,6 +21,8 @@ jobs:
 
           def handle(signum, frame):
             print(f'received: {signum=}')
+            with open('/tmp/markerfile', 'w') as f:
+              f.write('bla')
 
           signal.signal(signal.SIGINT, handle)
           signal.signal(signal.SIGTERM, handle)
@@ -33,3 +35,5 @@ jobs:
         shell: bash
         run: |
           echo we were cancelled, alas!
+          echo ls /tmp
+          ls /tmp
