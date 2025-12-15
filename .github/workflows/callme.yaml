@@ -1,0 +1,14 @@
+name: Reusable Test-Workflow
+
+on:
+  workflow_call:
+
+
+jobs:
+  test-env:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        shell: bash
+        run: |
+          echo "env-var: ${{ vars.ENV_VAR }}, secret: ${{ secrets.SUPER_SECRET }}"
