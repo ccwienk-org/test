@@ -25,28 +25,6 @@ defaults:
     shell: bash
 
 jobs:
-  test-auth:
-    runs-on: ubuntu-latest
-    steps:
-      - name: auth-test
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          git ls-remote \
-            https://x-access-token:${{ github.token }}@github.com/ccwienk-org/test
-  upload-dynamic-test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: touch
-        id: x
-        shell: bash
-        run: |
-          touch /tmp/foo
-      - uses: ccwienk-org/test/.github/actions/u@master
-        with:
-          name: myname
-          path: /tmp/foo
   test-python-packages:
     runs-on: ubuntu-latest
     steps:
