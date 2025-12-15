@@ -25,6 +25,14 @@ defaults:
     shell: bash
 
 jobs:
+  test-env:
+    environment: my-env
+    runs-on: ubuntu-latest
+    steps:
+       - name: test-env
+         shell: bash
+         run: |
+          echo "running"
   test-python-packages:
     runs-on: ubuntu-latest
     steps:
