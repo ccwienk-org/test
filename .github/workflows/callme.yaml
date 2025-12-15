@@ -4,7 +4,8 @@ on:
   workflow_call:
     inputs:
       env:
-        type: string
+        type: environment
+        required: true
 
 
 jobs:
