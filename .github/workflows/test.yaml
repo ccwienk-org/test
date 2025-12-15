@@ -33,6 +33,7 @@ jobs:
          shell: bash
          run: |
           echo "running"
+          echo "env-var: ${{ vars.ENV_VAR }}, secret: ${{ secrets.SUPER_SECRET }}"
   test-python-packages:
     runs-on: ubuntu-latest
     steps:
