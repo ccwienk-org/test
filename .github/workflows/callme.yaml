@@ -2,7 +2,7 @@ name: Reusable Test-Workflow
 
 on:
   workflow_call:
-    with:
+    inputs:
       env:
         type: environment
 
