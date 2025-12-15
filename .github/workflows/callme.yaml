@@ -2,11 +2,15 @@ name: Reusable Test-Workflow
 
 on:
   workflow_call:
+    with:
+      env:
+        type: environment
 
 
 jobs:
   test-env:
     runs-on: ubuntu-latest
+    environment: ${{ inputs.env }}
     steps:
       - name: test
         shell: bash

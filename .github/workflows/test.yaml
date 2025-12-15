@@ -28,6 +28,8 @@ jobs:
   call-enved-workflow:
     uses: ./.github/workflows/callme.yaml
     secrets: inherit
+    with:
+      env: my-env
   test-env:
     environment: my-env
     runs-on: ubuntu-latest
